@@ -1,7 +1,6 @@
 package com.coffesoft.financeapplication.service.personal;
 
 import com.coffesoft.financeapplication.exception.UserCardNotFoundException;
-import com.coffesoft.financeapplication.exception.UserMonoNotFoundException;
 import com.coffesoft.financeapplication.model.personal.UserCard;
 import com.coffesoft.financeapplication.repository.personal.UserCardRepository;
 import org.springframework.stereotype.Service;
@@ -46,12 +45,12 @@ public class UserCardServiceImpl implements UserCardService {
     }
 
     @Override
-    public void deleteUserCard(UserCard userCard) throws UserMonoNotFoundException {
+    public void deleteUserCard(UserCard userCard) throws UserCardNotFoundException {
         Optional<UserCard> userCardDb = userCardRepository.findById(userCard.getId());
         if (userCardDb.isPresent()) {
             userCardRepository.delete(userCard);
         } else {
-            throw new UserMonoNotFoundException(userCard.getId());
+            throw new UserCardNotFoundException(userCard.getId());
         }
     }
 }
