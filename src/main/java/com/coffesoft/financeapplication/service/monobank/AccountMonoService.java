@@ -1,2 +1,4 @@
-package com.coffesoft.financeapplication.service.monobank;public class AccountMonoService {
+package com.coffesoft.financeapplication.service.monobank;
+
+public class AccountMonoService {
 }
