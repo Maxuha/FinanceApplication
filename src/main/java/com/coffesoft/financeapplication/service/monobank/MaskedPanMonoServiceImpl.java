@@ -3,10 +3,12 @@ package com.coffesoft.financeapplication.service.monobank;
 import com.coffesoft.financeapplication.exception.MaskedPanMonoNotFoundException;
 import com.coffesoft.financeapplication.model.monobank.MaskedPanMono;
 import com.coffesoft.financeapplication.repository.monobank.MaskedPanMonoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MaskedPanMonoServiceImpl implements MaskedPanMonoService {
     private final MaskedPanMonoRepository maskedPanMonoRepository;
 
