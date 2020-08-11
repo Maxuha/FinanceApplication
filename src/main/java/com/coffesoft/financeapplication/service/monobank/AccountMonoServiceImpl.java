@@ -45,7 +45,12 @@ public class AccountMonoServiceImpl implements AccountMonoService {
     }
 
     @Override
-    public void deleteAccountMono(AccountMono accountMono) {
-        accountMonoRepository.delete(accountMono);
+    public void deleteAccountMono(AccountMono accountMono) throws AccountMonoNotFoundException {
+        Optional<AccountMono> accountMonoDb = accountMonoRepository.findById(accountMono.getId());
+        if (accountMonoDb.isPresent()) {
+            accountMonoRepository.delete(accountMono);
+        } else {
+            throw new AccountMonoNotFoundException(accountMono.getId());
+        }
     }
 }

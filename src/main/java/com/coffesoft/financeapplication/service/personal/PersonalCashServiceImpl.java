@@ -45,7 +45,12 @@ public class PersonalCashServiceImpl implements PersonalCashService {
     }
 
     @Override
-    public void deletePersonalCash(PersonalCash personalCash) {
-        personalCashRepository.delete(personalCash);
+    public void deletePersonalCash(PersonalCash personalCash) throws PersonalCashNotFoundException {
+        Optional<PersonalCash> personalCashDb = personalCashRepository.findById(personalCash.getId());
+        if (personalCashDb.isPresent()) {
+            personalCashRepository.delete(personalCash);
+        } else {
+            throw new PersonalCashNotFoundException(personalCash.getId());
+        }
     }
 }

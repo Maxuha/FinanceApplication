@@ -11,5 +11,5 @@ public interface PersonalCashService {
     Optional<PersonalCash> findByIdPersonalCash(Long id) throws PersonalCashNotFoundException;
     PersonalCash savePersonalCash(PersonalCash personalCash);
     PersonalCash updatePersonalCash(PersonalCash personalCash) throws PersonalCashNotFoundException;
-    void deletePersonalCash(PersonalCash personalCash);
+    void deletePersonalCash(PersonalCash personalCash) throws PersonalCashNotFoundException;
 }
