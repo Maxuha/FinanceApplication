@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Wallet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_card_id", nullable = false)
     private UserCard userCard;
@@ -25,18 +25,18 @@ public class Wallet {
     public Wallet() {
     }
 
-    public Wallet(Integer id, UserCard userCard, PersonalCash personalCash, User user) {
+    public Wallet(Long id, UserCard userCard, PersonalCash personalCash, User user) {
         this.id = id;
         this.userCard = userCard;
         this.personalCash = personalCash;
         this.user = user;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
