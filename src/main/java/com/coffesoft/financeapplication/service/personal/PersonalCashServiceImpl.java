@@ -3,10 +3,12 @@ package com.coffesoft.financeapplication.service.personal;
 import com.coffesoft.financeapplication.exception.PersonalCashNotFoundException;
 import com.coffesoft.financeapplication.model.personal.PersonalCash;
 import com.coffesoft.financeapplication.repository.personal.PersonalCashRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class PersonalCashServiceImpl implements PersonalCashService {
     private final PersonalCashRepository personalCashRepository;
 
