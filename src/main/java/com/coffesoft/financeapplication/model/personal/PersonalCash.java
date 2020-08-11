@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class PersonalCash {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     @Column
     private Integer balance;
     @OneToOne(fetch = FetchType.LAZY,
@@ -20,17 +20,17 @@ public class PersonalCash {
     public PersonalCash() {
     }
 
-    public PersonalCash(Integer id, Integer balance, Wallet wallet) {
+    public PersonalCash(Long id, Integer balance, Wallet wallet) {
         this.id = id;
         this.balance = balance;
         this.wallet = wallet;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

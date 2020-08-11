@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     @Column
     private String username;
     @Column
@@ -25,7 +25,7 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String username, String password, String email, LocalDateTime createTime, Wallet wallet) {
+    public User(Long id, String username, String password, String email, LocalDateTime createTime, Wallet wallet) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -34,11 +34,11 @@ public class User {
         this.wallet = wallet;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class CurrencyCode {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     @Column
     private String code;
     @OneToOne(fetch = FetchType.LAZY,
@@ -22,18 +22,18 @@ public class CurrencyCode {
     public CurrencyCode() {
     }
 
-    public CurrencyCode(Integer id, String code, AccountMono accountMono, StatementMono statementMono) {
+    public CurrencyCode(Long id, String code, AccountMono accountMono, StatementMono statementMono) {
         this.id = id;
         this.code = code;
         this.accountMono = accountMono;
         this.statementMono = statementMono;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

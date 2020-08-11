@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class CurrencyMono {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     @Column(name = "currency_code_a")
     private Integer currencyCodeA;
     @Column(name = "currency_code_b")
@@ -24,7 +24,7 @@ public class CurrencyMono {
     public CurrencyMono() {
     }
 
-    public CurrencyMono(Integer id, Integer currencyCodeA, Integer currencyCodeB, LocalDateTime date, Float rateBuy, Float rateSell, Float reteCross) {
+    public CurrencyMono(Long id, Integer currencyCodeA, Integer currencyCodeB, LocalDateTime date, Float rateBuy, Float rateSell, Float reteCross) {
         this.id = id;
         this.currencyCodeA = currencyCodeA;
         this.currencyCodeB = currencyCodeB;
@@ -34,11 +34,11 @@ public class CurrencyMono {
         this.rateCross = rateCross;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

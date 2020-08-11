@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class MaskedPanMono {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     @Column(name = "masked_pan")
     private String maskedPan;
     @Column(name = "curt_number")
@@ -19,18 +19,18 @@ public class MaskedPanMono {
     public MaskedPanMono() {
     }
 
-    public MaskedPanMono(Integer id, String maskedPan, String cartNumber, String expirationDate) {
+    public MaskedPanMono(Long id, String maskedPan, String cartNumber, String expirationDate) {
         this.id = id;
         this.maskedPan = maskedPan;
         this.cartNumber = cartNumber;
         this.expirationDate = expirationDate;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
