@@ -22,12 +22,9 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
-    public Optional<Wallet> findByIdWallet(Long id) throws WalletNotFoundException {
+    public Wallet findByIdWallet(Long id) throws WalletNotFoundException {
         Optional<Wallet> walletDb = walletRepository.findById(id);
-        if (walletDb.isPresent()) {
-            return walletDb;
-        }
-        throw new WalletNotFoundException(id);
+        return walletDb.orElseThrow(() -> new WalletNotFoundException(id));
     }
 
     @Override
@@ -46,11 +43,6 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public void deleteWallet(Wallet wallet) throws WalletNotFoundException {
-        Optional<Wallet> walletDb = walletRepository.findById(wallet.getId());
-        if (walletDb.isPresent()) {
-            walletRepository.delete(wallet);
-        } else {
-            throw new WalletNotFoundException(wallet.getId());
-        }
+        walletRepository.delete(findByIdWallet(wallet.getId()));
     }
 }

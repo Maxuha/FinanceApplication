@@ -22,12 +22,9 @@ public class AccountMonoServiceImpl implements AccountMonoService {
     }
 
     @Override
-    public Optional<AccountMono> findByIdAccountMono(String id) throws AccountMonoNotFoundException {
+    public AccountMono findByIdAccountMono(String id) throws AccountMonoNotFoundException {
         Optional<AccountMono> accountMonoDb = accountMonoRepository.findById(id);
-        if (accountMonoDb.isPresent()) {
-            return accountMonoDb;
-        }
-        throw new AccountMonoNotFoundException(id);
+        return accountMonoDb.orElseThrow(() -> new AccountMonoNotFoundException(id));
     }
 
     @Override
@@ -46,11 +43,6 @@ public class AccountMonoServiceImpl implements AccountMonoService {
 
     @Override
     public void deleteAccountMono(AccountMono accountMono) throws AccountMonoNotFoundException {
-        Optional<AccountMono> accountMonoDb = accountMonoRepository.findById(accountMono.getId());
-        if (accountMonoDb.isPresent()) {
-            accountMonoRepository.delete(accountMono);
-        } else {
-            throw new AccountMonoNotFoundException(accountMono.getId());
-        }
+        accountMonoRepository.delete(findByIdAccountMono(accountMono.getId()));
     }
 }

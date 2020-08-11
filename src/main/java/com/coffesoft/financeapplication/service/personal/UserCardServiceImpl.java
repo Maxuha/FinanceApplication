@@ -22,12 +22,9 @@ public class UserCardServiceImpl implements UserCardService {
     }
 
     @Override
-    public Optional<UserCard> findByIdUserCard(Long id) throws UserCardNotFoundException {
+    public UserCard findByIdUserCard(Long id) throws UserCardNotFoundException {
         Optional<UserCard> userCardDb = userCardRepository.findById(id);
-        if (userCardDb.isPresent()) {
-            return userCardDb;
-        }
-        throw new UserCardNotFoundException(id);
+        return userCardDb.orElseThrow(() -> new UserCardNotFoundException(id));
     }
 
     @Override
@@ -46,11 +43,6 @@ public class UserCardServiceImpl implements UserCardService {
 
     @Override
     public void deleteUserCard(UserCard userCard) throws UserCardNotFoundException {
-        Optional<UserCard> userCardDb = userCardRepository.findById(userCard.getId());
-        if (userCardDb.isPresent()) {
-            userCardRepository.delete(userCard);
-        } else {
-            throw new UserCardNotFoundException(userCard.getId());
-        }
+        userCardRepository.delete(findByIdUserCard(userCard.getId()));
     }
 }

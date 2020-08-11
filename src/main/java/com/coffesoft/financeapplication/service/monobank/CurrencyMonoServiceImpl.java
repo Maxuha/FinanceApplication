@@ -22,12 +22,9 @@ public class CurrencyMonoServiceImpl implements CurrencyMonoService {
     }
 
     @Override
-    public Optional<CurrencyMono> findIdCurrencyMono(Long id) throws CurrencyMonoNotFoundException {
+    public CurrencyMono findIdCurrencyMono(Long id) throws CurrencyMonoNotFoundException {
         Optional<CurrencyMono> currencyMonoDb = currencyMonoRepository.findById(id);
-        if (currencyMonoDb.isPresent()) {
-            return currencyMonoDb;
-        }
-        throw new CurrencyMonoNotFoundException(id);
+        return currencyMonoDb.orElseThrow(() -> new CurrencyMonoNotFoundException(id));
     }
 
     @Override
@@ -46,7 +43,7 @@ public class CurrencyMonoServiceImpl implements CurrencyMonoService {
 
 
     @Override
-    public void deleteCurrencyMono(CurrencyMono currencyMono) {
-        currencyMonoRepository.delete(currencyMono);
+    public void deleteCurrencyMono(CurrencyMono currencyMono) throws CurrencyMonoNotFoundException {
+        currencyMonoRepository.delete(findIdCurrencyMono(currencyMono.getId()));
     }
 }

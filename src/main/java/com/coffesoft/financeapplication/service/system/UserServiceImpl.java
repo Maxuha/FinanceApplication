@@ -1,6 +1,5 @@
 package com.coffesoft.financeapplication.service.system;
 
-import com.coffesoft.financeapplication.exception.NotFoundException;
 import com.coffesoft.financeapplication.exception.UserNotFoundException;
 import com.coffesoft.financeapplication.model.system.User;
 import com.coffesoft.financeapplication.repository.system.UserRepository;
@@ -23,12 +22,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findByIdUser(Long id) throws UserNotFoundException {
+    public User findByIdUser(Long id) throws UserNotFoundException {
         Optional<User> userDb = userRepository.findById(id);
-        if (userDb.isPresent()) {
-            return userDb;
-        }
-        throw new UserNotFoundException(id);
+        return userDb.orElseThrow(() -> new UserNotFoundException(id));
     }
 
     @Override
@@ -47,11 +43,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(User user) throws UserNotFoundException {
-        Optional<User> userDb = userRepository.findById(user.getId());
-        if (userDb.isPresent()) {
-            userRepository.delete(user);
-        } else {
-            throw new UserNotFoundException(user.getId());
-        }
+        userRepository.delete(findByIdUser(user.getId()));
     }
 }

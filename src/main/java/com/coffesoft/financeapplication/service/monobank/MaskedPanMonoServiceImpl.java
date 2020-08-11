@@ -20,12 +20,9 @@ public class MaskedPanMonoServiceImpl implements MaskedPanMonoService {
     }
 
     @Override
-    public Optional<MaskedPanMono> findByIdMaskedPanMono(Long id) throws MaskedPanMonoNotFoundException {
+    public MaskedPanMono findByIdMaskedPanMono(Long id) throws MaskedPanMonoNotFoundException {
         Optional<MaskedPanMono> maskedPanMonoDb = maskedPanMonoRepository.findById(id);
-        if (maskedPanMonoDb.isPresent()) {
-            return maskedPanMonoDb;
-        }
-        throw new MaskedPanMonoNotFoundException(id);
+        return maskedPanMonoDb.orElseThrow(() -> new MaskedPanMonoNotFoundException(id));
     }
 
     @Override
@@ -44,11 +41,6 @@ public class MaskedPanMonoServiceImpl implements MaskedPanMonoService {
 
     @Override
     public void deleteMaskedPanMono(MaskedPanMono maskedPanMono) throws MaskedPanMonoNotFoundException {
-        Optional<MaskedPanMono> maskedPanMonoDb = maskedPanMonoRepository.findById(maskedPanMono.getId());
-        if (maskedPanMonoDb.isPresent()) {
-            maskedPanMonoRepository.delete(maskedPanMono);
-        } else {
-            throw new MaskedPanMonoNotFoundException(maskedPanMono.getId());
-        }
+        maskedPanMonoRepository.delete(findByIdMaskedPanMono(maskedPanMono.getId()));
     }
 }

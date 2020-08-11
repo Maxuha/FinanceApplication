@@ -22,12 +22,9 @@ public class PersonalCashServiceImpl implements PersonalCashService {
     }
 
     @Override
-    public Optional<PersonalCash> findByIdPersonalCash(Long id) throws PersonalCashNotFoundException {
+    public PersonalCash findByIdPersonalCash(Long id) throws PersonalCashNotFoundException {
         Optional<PersonalCash> personalCashDb = personalCashRepository.findById(id);
-        if (personalCashDb.isPresent()) {
-            return personalCashDb;
-        }
-        throw new PersonalCashNotFoundException(id);
+        return personalCashDb.orElseThrow(() -> new PersonalCashNotFoundException(id));
     }
 
     @Override
@@ -46,11 +43,6 @@ public class PersonalCashServiceImpl implements PersonalCashService {
 
     @Override
     public void deletePersonalCash(PersonalCash personalCash) throws PersonalCashNotFoundException {
-        Optional<PersonalCash> personalCashDb = personalCashRepository.findById(personalCash.getId());
-        if (personalCashDb.isPresent()) {
-            personalCashRepository.delete(personalCash);
-        } else {
-            throw new PersonalCashNotFoundException(personalCash.getId());
-        }
+        personalCashRepository.delete(findByIdPersonalCash(personalCash.getId()));
     }
 }

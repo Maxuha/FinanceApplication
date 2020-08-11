@@ -22,12 +22,9 @@ public class CurrencyCodeServiceImpl implements CurrencyCodeService {
     }
 
     @Override
-    public Optional<CurrencyCode> findByIdCurrencyCode(Long id) throws CurrencyCodeNotFoundException {
+    public CurrencyCode findByIdCurrencyCode(Long id) throws CurrencyCodeNotFoundException {
         Optional<CurrencyCode> currencyCodeDb = currencyCodeRepository.findById(id);
-        if (currencyCodeDb.isPresent()) {
-            return currencyCodeDb;
-        }
-        throw new CurrencyCodeNotFoundException(id);
+        return currencyCodeDb.orElseThrow(() -> new CurrencyCodeNotFoundException(id));
     }
 
     @Override
@@ -46,11 +43,6 @@ public class CurrencyCodeServiceImpl implements CurrencyCodeService {
 
     @Override
     public void deleteCurrencyCode(CurrencyCode currencyCode) throws CurrencyCodeNotFoundException {
-        Optional<CurrencyCode> currencyCodeDb = currencyCodeRepository.findById(currencyCode.getId());
-        if (currencyCodeDb.isPresent()) {
-            currencyCodeRepository.delete(currencyCode);
-        } else {
-            throw new CurrencyCodeNotFoundException(currencyCode.getId());
-        }
+        currencyCodeRepository.delete(findByIdCurrencyCode(currencyCode.getId()));
     }
 }
