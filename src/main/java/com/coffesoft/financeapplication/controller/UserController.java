@@ -20,12 +20,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/user")
+    @GetMapping(value = "/user", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<User>> getAll() {
         return new ResponseEntity<>(userService.findAllUser(), HttpStatus.OK);
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping(value = "/user/{userId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<User> getById(@PathVariable Long userId) {
         try {
             return new ResponseEntity<>(userService.findByIdUser(userId), HttpStatus.OK);
@@ -35,12 +35,12 @@ public class UserController {
         }
     }
 
-    @PostMapping("/user")
+    @PostMapping(value = "/user", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<User> create(@RequestBody User user) {
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.OK);
     }
 
-    @PutMapping("/user")
+    @PutMapping(value = "/user", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<User> update(@RequestBody User user) {
         try {
             return new ResponseEntity<>(userService.updateUser(user), HttpStatus.OK);
@@ -50,7 +50,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/user")
+    @DeleteMapping(value = "/user", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> delete(@RequestBody User user) {
         try {
             userService.deleteUser(user);
