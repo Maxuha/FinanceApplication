@@ -1,8 +1,10 @@
 package com.coffesoft.financeapplication.model.personal;
 
 import com.coffesoft.financeapplication.model.system.Wallet;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "personal_cash")
@@ -12,6 +14,8 @@ public class PersonalCash {
     private Long id;
     @Column
     private Integer balance;
+    @JsonIgnore
+    @XmlTransient
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "personalCash")

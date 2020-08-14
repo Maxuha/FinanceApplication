@@ -1,5 +1,6 @@
 package com.coffesoft.financeapplication.service.system;
 
+import com.coffesoft.financeapplication.exception.NotFoundException;
 import com.coffesoft.financeapplication.exception.WalletNotFoundException;
 import com.coffesoft.financeapplication.model.system.Wallet;
 import com.coffesoft.financeapplication.repository.system.WalletRepository;
@@ -25,6 +26,12 @@ public class WalletServiceImpl implements WalletService {
     public Wallet findByIdWallet(Long id) throws WalletNotFoundException {
         Optional<Wallet> walletDb = walletRepository.findById(id);
         return walletDb.orElseThrow(() -> new WalletNotFoundException(id));
+    }
+
+    @Override
+    public Wallet findByUserIdWallet(Long userId) throws NotFoundException {
+        Optional<Wallet> walletDb = walletRepository.findByUserId(userId);
+        return walletDb.orElseThrow(() -> new NotFoundException(String.format("wallet is not found by user id '%s' ", userId)));
     }
 
     @Override
