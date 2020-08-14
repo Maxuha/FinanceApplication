@@ -29,9 +29,9 @@ public class PersonalCashServiceImpl implements PersonalCashService {
     }
 
     @Override
-    public PersonalCash findByWalletIdPersonalCash(Long userId, Long walletId) throws NotFoundException {
+    public PersonalCash findByWalletIdPersonalCash(Long walletId) throws NotFoundException {
         Optional<PersonalCash> personalCashDb = personalCashRepository.findByWalletId(walletId);
-        return personalCashDb.orElseThrow(() -> new NotFoundException(String.format("personal cash is not found by wallet id '%s' and user id '%s'", userId, walletId)));
+        return personalCashDb.orElseThrow(() -> new NotFoundException(String.format("personal cash is not found by wallet id '%s'", walletId)));
     }
 
     @Override

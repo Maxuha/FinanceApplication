@@ -9,7 +9,7 @@ import java.util.List;
 public interface PersonalCashService {
     List<PersonalCash> findAllPersonalCash();
     PersonalCash findByIdPersonalCash(Long id) throws PersonalCashNotFoundException;
-    PersonalCash findByWalletIdPersonalCash(Long userId, Long walletId) throws NotFoundException;
+    PersonalCash findByWalletIdPersonalCash(Long walletId) throws NotFoundException;
     PersonalCash savePersonalCash(PersonalCash personalCash);
     PersonalCash updatePersonalCash(PersonalCash personalCash) throws PersonalCashNotFoundException;
     void deletePersonalCash(PersonalCash personalCash) throws PersonalCashNotFoundException;
