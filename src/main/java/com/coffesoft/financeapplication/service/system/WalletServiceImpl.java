@@ -31,7 +31,7 @@ public class WalletServiceImpl implements WalletService {
     @Override
     public Wallet findByUserIdWallet(Long userId) throws NotFoundException {
         Optional<Wallet> walletDb = walletRepository.findByUserId(userId);
-        return walletDb.orElseThrow(() -> new NotFoundException(userId.toString()));
+        return walletDb.orElseThrow(() -> new NotFoundException(String.format("wallet is not found by user id '%s' ", userId)));
     }
 
     @Override
