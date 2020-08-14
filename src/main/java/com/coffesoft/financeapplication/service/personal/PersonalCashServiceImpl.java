@@ -1,5 +1,6 @@
 package com.coffesoft.financeapplication.service.personal;
 
+import com.coffesoft.financeapplication.exception.NotFoundException;
 import com.coffesoft.financeapplication.exception.PersonalCashNotFoundException;
 import com.coffesoft.financeapplication.model.personal.PersonalCash;
 import com.coffesoft.financeapplication.repository.personal.PersonalCashRepository;
@@ -25,6 +26,12 @@ public class PersonalCashServiceImpl implements PersonalCashService {
     public PersonalCash findByIdPersonalCash(Long id) throws PersonalCashNotFoundException {
         Optional<PersonalCash> personalCashDb = personalCashRepository.findById(id);
         return personalCashDb.orElseThrow(() -> new PersonalCashNotFoundException(id));
+    }
+
+    @Override
+    public PersonalCash findByWalletIdPersonalCash(Long userId, Long walletId) throws NotFoundException {
+        Optional<PersonalCash> personalCashDb = personalCashRepository.findByWalletId(walletId);
+        return personalCashDb.orElseThrow(() -> new NotFoundException(String.format("personal cash is not found by wallet id '%s' and user id '%s'", userId, walletId)));
     }
 
     @Override
