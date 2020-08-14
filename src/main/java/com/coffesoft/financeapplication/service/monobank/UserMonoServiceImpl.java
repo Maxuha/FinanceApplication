@@ -1,5 +1,6 @@
 package com.coffesoft.financeapplication.service.monobank;
 
+import com.coffesoft.financeapplication.exception.NotFoundException;
 import com.coffesoft.financeapplication.exception.UserMonoNotFoundException;
 import com.coffesoft.financeapplication.model.monobank.UserMono;
 import com.coffesoft.financeapplication.repository.monobank.UserMonoRepository;
@@ -25,6 +26,12 @@ public class UserMonoServiceImpl implements UserMonoService {
     public UserMono findByIdUserMono(String id) throws UserMonoNotFoundException {
         Optional<UserMono> userMonoDb = userMonoRepository.findById(id);
         return userMonoDb.orElseThrow(() -> new UserMonoNotFoundException(id));
+    }
+
+    @Override
+    public UserMono findByUserCardIdUserMono(Long userCardId) throws NotFoundException {
+        Optional<UserMono> userMonoDb = userMonoRepository.findByUserCardId(userCardId);
+        return userMonoDb.orElseThrow(() -> new NotFoundException(String.format("user mono is not found by user card id '%s'", userCardId)));
     }
 
     @Override
