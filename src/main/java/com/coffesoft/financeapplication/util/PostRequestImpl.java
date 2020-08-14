@@ -13,7 +13,7 @@ public class PostRequestImpl implements PostRequest {
     OkHttpClient client = new OkHttpClient();
 
     @Override
-    public String postWithJsonRequest(String url, String json) {
+    public Object postWithJsonRequest(String url, String json) {
         try {
             return Objects.requireNonNull(postWithJson(url, json).body()).string();
         } catch (IOException e) {
