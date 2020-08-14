@@ -39,9 +39,9 @@ public class PersonalCashController {
     @GetMapping(value = "/user/{userId}/wallet/{walletId}/personal/cash", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<PersonalCash> getByWalletId(@PathVariable Long userId, @PathVariable Long walletId) {
         try {
-            return new ResponseEntity<>(personalCashService.findByWalletIdPersonalCash(userId, walletId), HttpStatus.OK);
+            return new ResponseEntity<>(personalCashService.findByWalletIdPersonalCash(walletId), HttpStatus.OK);
         } catch (NotFoundException e) {
-            logger.warn("Get request: " + e.getMessage());
+            logger.warn(String.format("Get request for user id %s: %s", userId, e.getMessage()));
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
