@@ -1,9 +1,9 @@
 package com.coffesoft.financeapplication.util;
 
-import com.squareup.okhttp.Headers;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
+import okhttp3.Headers;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +13,7 @@ import java.util.Map;
 @Component
 public class GetRequestImpl implements GetRequest {
     private static final Logger logger = Logger.getLogger(GetRequestImpl.class);
+    OkHttpClient client = new OkHttpClient();
 
     @Override
     public String getRequest(String url) {
@@ -35,7 +36,6 @@ public class GetRequestImpl implements GetRequest {
     }
 
     private Response get(String url) throws IOException {
-        OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -44,7 +44,6 @@ public class GetRequestImpl implements GetRequest {
 
     private Response getWithHeader(String url, Map<String, String> headers) throws IOException {
         Headers headerBuilder = Headers.of(headers);
-        OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(url)
                 .headers(headerBuilder)
