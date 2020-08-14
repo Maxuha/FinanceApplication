@@ -1,5 +1,6 @@
 package com.coffesoft.financeapplication.service.personal;
 
+import com.coffesoft.financeapplication.exception.NotFoundException;
 import com.coffesoft.financeapplication.exception.UserCardNotFoundException;
 import com.coffesoft.financeapplication.model.personal.UserCard;
 import com.coffesoft.financeapplication.repository.personal.UserCardRepository;
@@ -25,6 +26,12 @@ public class UserCardServiceImpl implements UserCardService {
     public UserCard findByIdUserCard(Long id) throws UserCardNotFoundException {
         Optional<UserCard> userCardDb = userCardRepository.findById(id);
         return userCardDb.orElseThrow(() -> new UserCardNotFoundException(id));
+    }
+
+    @Override
+    public UserCard findByWalletIdUserCard(Long walletId) throws NotFoundException {
+        Optional<UserCard> userCardDb = userCardRepository.findByWalletId(walletId);
+        return userCardDb.orElseThrow(() -> new NotFoundException(String.format("user card is not found by wallet id '%s'", walletId)));
     }
 
     @Override
