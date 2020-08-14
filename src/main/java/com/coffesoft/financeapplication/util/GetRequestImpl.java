@@ -5,10 +5,12 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Map;
 
+@Component
 public class GetRequestImpl implements GetRequest {
     private static final Logger logger = Logger.getLogger(GetRequestImpl.class);
 
