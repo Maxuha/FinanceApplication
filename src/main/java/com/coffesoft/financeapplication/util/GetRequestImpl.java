@@ -32,7 +32,6 @@ public class GetRequestImpl implements GetRequest {
         return null;
     }
 
-
     private Response get(String url) throws IOException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
