@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "user_card")
 public class UserCard {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
