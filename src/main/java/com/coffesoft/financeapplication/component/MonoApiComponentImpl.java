@@ -88,12 +88,7 @@ public class MonoApiComponentImpl implements MonoApiComponent {
 
     private List<MaskedPanMono> createMaskedPanMono(List<String> maskedPanList, AccountMono accountMono) {
         List<MaskedPanMono> maskedPanMonoList = getMaskedPanMonoFromApi(maskedPanList, accountMono);
-        try {
-            return maskedPanMonoService.saveMaskedPanMonoListForAccountMono(maskedPanMonoList);
-        } catch (MaskedPanMonoNotFoundException e) {
-            logger.warn("Api request: " + e.getMessage());
-        }
-        return null;
+        return maskedPanMonoService.saveMaskedPanMonoListForAccountMono(maskedPanMonoList);
     }
 
     private CurrencyCode createCurrencyCode(Integer currencyCodeValue) {
