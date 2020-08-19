@@ -11,13 +11,14 @@ public class StatementMonoApi {
     private Integer commissionRate;
     private Integer cashbackAmount;
     private Integer balance;
+    private Boolean hold;
 
     public StatementMonoApi() {
     }
 
     public StatementMonoApi(String id, Long time, String description, Integer mcc, Integer amount,
                             Integer operationAmount, Integer currencyCode, Integer commissionRate, Integer cashbackAmount,
-                            Integer balance) {
+                            Integer balance, Boolean hold) {
         this.id = id;
         this.time = time;
         this.description = description;
@@ -28,6 +29,7 @@ public class StatementMonoApi {
         this.commissionRate = commissionRate;
         this.cashbackAmount = cashbackAmount;
         this.balance = balance;
+        this.hold = hold;
     }
 
     public String getId() {
@@ -108,5 +110,13 @@ public class StatementMonoApi {
 
     public void setBalance(Integer balance) {
         this.balance = balance;
+    }
+
+    public Boolean getHold() {
+        return hold;
+    }
+
+    public void setHold(Boolean hold) {
+        this.hold = hold;
     }
 }
