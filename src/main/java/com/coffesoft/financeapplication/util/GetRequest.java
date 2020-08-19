@@ -1,5 +1,4 @@
 package com.coffesoft.financeapplication.util;
-
 import java.util.Map;
 
 public interface GetRequest {
