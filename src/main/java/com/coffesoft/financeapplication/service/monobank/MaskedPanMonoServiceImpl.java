@@ -33,6 +33,11 @@ public class MaskedPanMonoServiceImpl implements MaskedPanMonoService {
     }
 
     @Override
+    public List<MaskedPanMono> saveMaskedPanMonoListForAccountMono(List<MaskedPanMono> maskedPanMonoList) {
+        return maskedPanMonoRepository.saveAll(maskedPanMonoList);
+    }
+
+    @Override
     public MaskedPanMono updateMaskedPanMono(MaskedPanMono maskedPanMono) throws MaskedPanMonoNotFoundException {
         Optional<MaskedPanMono> maskedPanMonoDb = maskedPanMonoRepository.findById(maskedPanMono.getId());
         if (maskedPanMonoDb.isPresent()) {
