@@ -1,5 +1,7 @@
 package com.coffesoft.financeapplication.model.monobank;
 
+import com.coffesoft.financeapplication.model.monobank.api.AccountMonoApi;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -28,6 +30,16 @@ public class AccountMono {
     private List<StatementMono> statementMonoList;
 
     public AccountMono() {
+    }
+
+    public AccountMono(AccountMonoApi accountMonoApi, CurrencyCode currencyCode, UserMono userMono) {
+        id = accountMonoApi.getId();
+        cashbackType = accountMonoApi.getCashbackType();
+        balance = accountMonoApi.getBalance();
+        creditLimit = accountMonoApi.getCreditLimit();
+        type = accountMonoApi.getType();
+        this.currencyCode = currencyCode;
+        this.userMono = userMono;
     }
 
     public AccountMono(String id, CurrencyCode currencyCode, String cashbackType, Integer balance, Integer creditLimit, String type, List<MaskedPanMono> maskedPanMonoList, UserMono userMono, List<StatementMono> statementMonoList) {
