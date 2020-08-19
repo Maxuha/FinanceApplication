@@ -120,11 +120,9 @@ public class MonoApiComponentImpl implements MonoApiComponent {
         List<AccountMono> accountMonoList = new ArrayList<>();
         for (AccountMonoApi accountMonoApi : accounts) {
             CurrencyCode currencyCode = createCurrencyCode(accountMonoApi.getCurrencyCode());
-            AccountMono accountMono = new AccountMono(accountMonoApi.getId(), currencyCode,
-                    accountMonoApi.getCashbackType(), accountMonoApi.getBalance(), accountMonoApi.getCreditLimit(),
-                    accountMonoApi.getType(), userMono);
+            AccountMono accountMono = new AccountMono(accountMonoApi, currencyCode, userMono);
             List<MaskedPanMono> maskedPanMonoList = createMaskedPanMono(accountMonoApi.getMaskedPan(), accountMono);
-            accountMono.setMaskedPanMono(maskedPanMonoList);
+            accountMono.setMaskedPanMonoList(maskedPanMonoList);
             accountMonoList.add(accountMono);
         }
         return accountMonoList;
