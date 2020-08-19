@@ -1,5 +1,6 @@
 package com.coffesoft.financeapplication.model.monobank;
 
+import com.coffesoft.financeapplication.model.monobank.api.UserMonoApi;
 import com.coffesoft.financeapplication.model.personal.UserCard;
 
 import javax.persistence.*;
@@ -25,6 +26,13 @@ public class UserMono {
     private List<AccountMono> accountMonoList;
 
     public UserMono() {
+    }
+
+    public UserMono(UserMonoApi userMonoApi, String token) {
+        this.token = token;
+        id = userMonoApi.getClientId();
+        name = userMonoApi.getName();
+        webHookUrl = userMonoApi.getWebHookUrl();
     }
 
     public UserMono(String id, String token, String name, String webHookUrl, UserCard userCard, List<AccountMono> accountMonoList) {
