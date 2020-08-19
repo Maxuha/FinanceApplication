@@ -33,6 +33,11 @@ public class StatementMonoServiceImpl implements StatementMonoService {
     }
 
     @Override
+    public List<StatementMono> saveStatementListForAccountMono(List<StatementMono> statementMonoList) {
+        return statementMonoRepository.saveAll(statementMonoList);
+    }
+
+    @Override
     public StatementMono updateStatementMono(StatementMono statementMono) throws StatementMonoNotFoundException {
         Optional<StatementMono> statementMonoDb = statementMonoRepository.findById(statementMono.getId());
         if (statementMonoDb.isPresent()) {
