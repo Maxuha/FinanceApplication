@@ -1,8 +1,10 @@
 package com.coffesoft.financeapplication.model.monobank;
 
 import com.coffesoft.financeapplication.model.monobank.api.AccountMonoApi;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
 
 @Entity
@@ -21,11 +23,15 @@ public class AccountMono {
     private Integer creditLimit;
     @Column
     private String type;
+    @JsonIgnore
+    @XmlTransient
     @OneToMany(mappedBy = "accountMono")
     private List<MaskedPanMono> maskedPanMonoList;
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_mono_id")
     private UserMono userMono;
+    @JsonIgnore
+    @XmlTransient
     @OneToMany(mappedBy = "accountMono", fetch = FetchType.EAGER)
     private List<StatementMono> statementMonoList;
 
