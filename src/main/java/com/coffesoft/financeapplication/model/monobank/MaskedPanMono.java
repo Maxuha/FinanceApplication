@@ -15,15 +15,25 @@ public class MaskedPanMono {
     @Column(name = "expiration_date")
     private String expirationDate;
     private Integer cvv;
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_mono_id")
+    private AccountMono accountMono;
 
     public MaskedPanMono() {
     }
 
-    public MaskedPanMono(Long id, String maskedPan, String cartNumber, String expirationDate) {
+    public MaskedPanMono(String maskedPan, AccountMono accountMono) {
+        this.maskedPan = maskedPan;
+        this.accountMono = accountMono;
+    }
+
+    public MaskedPanMono(Long id, String maskedPan, String cartNumber, String expirationDate, Integer cvv, AccountMono accountMono) {
         this.id = id;
         this.maskedPan = maskedPan;
         this.cartNumber = cartNumber;
         this.expirationDate = expirationDate;
+        this.cvv = cvv;
+        this.accountMono = accountMono;
     }
 
     public Long getId() {
@@ -64,5 +74,13 @@ public class MaskedPanMono {
 
     public void setCvv(Integer cvv) {
         this.cvv = cvv;
+    }
+
+    public AccountMono getAccountMono() {
+        return accountMono;
+    }
+
+    public void setAccountMono(AccountMono accountMono) {
+        this.accountMono = accountMono;
     }
 }

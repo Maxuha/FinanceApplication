@@ -19,9 +19,8 @@ public class AccountMono {
     private Integer creditLimit;
     @Column
     private String type;
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "masked_pan_id")
-    private MaskedPanMono maskedPanMono;
+    @OneToMany(mappedBy = "accountMono")
+    private List<MaskedPanMono> maskedPanMonoList;
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_mono_id")
     private UserMono userMono;
@@ -31,14 +30,14 @@ public class AccountMono {
     public AccountMono() {
     }
 
-    public AccountMono(String id, CurrencyCode currencyCode, String cashbackType, Integer balance, Integer creditLimit, String type, MaskedPanMono maskedPanMono, UserMono userMono, List<StatementMono> statementMonoList) {
+    public AccountMono(String id, CurrencyCode currencyCode, String cashbackType, Integer balance, Integer creditLimit, String type, List<MaskedPanMono> maskedPanMonoList, UserMono userMono, List<StatementMono> statementMonoList) {
         this.id = id;
         this.currencyCode = currencyCode;
         this.cashbackType = cashbackType;
         this.balance = balance;
         this.creditLimit = creditLimit;
         this.type = type;
-        this.maskedPanMono = maskedPanMono;
+        this.maskedPanMonoList = maskedPanMonoList;
         this.userMono = userMono;
         this.statementMonoList = statementMonoList;
     }
@@ -91,12 +90,12 @@ public class AccountMono {
         this.type = type;
     }
 
-    public MaskedPanMono getMaskedPanMono() {
-        return maskedPanMono;
+    public List<MaskedPanMono> getMaskedPanMonoList() {
+        return maskedPanMonoList;
     }
 
-    public void setMaskedPanMono(MaskedPanMono maskedPanMono) {
-        this.maskedPanMono = maskedPanMono;
+    public void setMaskedPanMonoList(List<MaskedPanMono> maskedPanMono) {
+        this.maskedPanMonoList = maskedPanMono;
     }
 
     public UserMono getUserMono() {
