@@ -39,6 +39,11 @@ public class AccountMonoServiceImpl implements AccountMonoService {
     }
 
     @Override
+    public List<AccountMono> saveAccountsMonoForUserMono(List<AccountMono> accountMonoList) {
+        return accountMonoRepository.saveAll(accountMonoList);
+    }
+
+    @Override
     public AccountMono updateAccountMono(AccountMono accountMono) throws AccountMonoNotFoundException {
         Optional<AccountMono> accountMonoDb = accountMonoRepository.findById(accountMono.getId());
         if (accountMonoDb.isPresent()) {

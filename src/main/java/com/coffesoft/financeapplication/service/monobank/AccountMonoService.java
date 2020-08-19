@@ -11,6 +11,7 @@ public interface AccountMonoService {
     List<AccountMono> findByUserMonoIdAccountMono(String userMonoId) throws NotFoundException;
     AccountMono findByIdAccountMono(String id) throws AccountMonoNotFoundException;
     AccountMono saveAccountMono(AccountMono accountMono);
+    List<AccountMono> saveAccountsMonoForUserMono(List<AccountMono> accountMonoList);
     AccountMono updateAccountMono(AccountMono accountMono) throws AccountMonoNotFoundException;
     void deleteAccountMono(AccountMono accountMono) throws AccountMonoNotFoundException;
 }
