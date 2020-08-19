@@ -22,6 +22,11 @@ public class AccountMonoServiceImpl implements AccountMonoService {
     }
 
     @Override
+    public List<AccountMono> findByUserMonoIdAccountMono(String userMonoId) {
+        return accountMonoRepository.findByUserMonoId(userMonoId);
+    }
+
+    @Override
     public AccountMono findByIdAccountMono(String id) throws AccountMonoNotFoundException {
         Optional<AccountMono> accountMonoDb = accountMonoRepository.findById(id);
         return accountMonoDb.orElseThrow(() -> new AccountMonoNotFoundException(id));
