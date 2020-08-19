@@ -1,7 +1,11 @@
 package com.coffesoft.financeapplication.model.monobank;
 
+import com.coffesoft.financeapplication.model.monobank.api.StatementMonoApi;
+
 import javax.persistence.*;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Entity
 @Table(name = "statement_mono")
@@ -27,6 +31,7 @@ public class StatementMono {
     private Integer commissionRate;
     @Column(name = "cashback_amount")
     private Integer cashbackAmount;
+    private Boolean hold;
     @ManyToOne(optional = false)
     @JoinColumn(name = "account_mono_id")
     private AccountMono accountMono;
@@ -34,7 +39,22 @@ public class StatementMono {
     public StatementMono() {
     }
 
-    public StatementMono(String id, LocalDateTime dateTime, String description, Mcc mcc, Integer amount, Integer operationAmount, CurrencyCode currencyCode, Integer commissionRate, Integer cashbackAmount, AccountMono accountMono) {
+    public StatementMono(StatementMonoApi statementMonoApi, Mcc mcc, CurrencyCode currencyCode, AccountMono accountMono) {
+        id = statementMonoApi.getId();
+        dateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(statementMonoApi.getTime()), ZoneId.systemDefault());
+        description = statementMonoApi.getDescription();
+        amount = statementMonoApi.getAmount();
+        operationAmount = statementMonoApi.getOperationAmount();
+        commissionRate = statementMonoApi.getCommissionRate();
+        cashbackAmount = statementMonoApi.getCashbackAmount();
+        this.mcc = mcc;
+        this.currencyCode = currencyCode;
+        this.accountMono = accountMono;
+    }
+
+    public StatementMono(String id, LocalDateTime dateTime, String description, Mcc mcc, Integer amount,
+                         Integer operationAmount, CurrencyCode currencyCode, Integer commissionRate,
+                         Integer cashbackAmount, AccountMono accountMono, Boolean hold) {
         this.id = id;
         this.dateTime = dateTime;
         this.description = description;
@@ -45,6 +65,7 @@ public class StatementMono {
         this.commissionRate = commissionRate;
         this.cashbackAmount = cashbackAmount;
         this.accountMono = accountMono;
+        this.hold = hold;
     }
 
     public String getId() {
@@ -117,6 +138,14 @@ public class StatementMono {
 
     public void setCashbackAmount(Integer cashbackAmount) {
         this.cashbackAmount = cashbackAmount;
+    }
+
+    public Boolean getHold() {
+        return hold;
+    }
+
+    public void setHold(Boolean hold) {
+        this.hold = hold;
     }
 
     public AccountMono getAccountMono() {
