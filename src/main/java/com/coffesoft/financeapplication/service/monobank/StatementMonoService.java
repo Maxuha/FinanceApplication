@@ -9,6 +9,7 @@ public interface StatementMonoService {
     List<StatementMono> findAllStatementMono();
     StatementMono findByIdStatementMono(String id) throws StatementMonoNotFoundException;
     StatementMono saveStatementMono(StatementMono statementMono);
+    List<StatementMono> saveStatementListForAccountMono(List<StatementMono> statementMonoList);
     StatementMono updateStatementMono(StatementMono statementMono) throws StatementMonoNotFoundException;
     void deleteStatementMono(StatementMono statementMono) throws StatementMonoNotFoundException;
 }
