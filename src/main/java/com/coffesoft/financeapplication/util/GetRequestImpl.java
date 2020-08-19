@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 
 @Component
 public class GetRequestImpl implements GetRequest {
@@ -18,7 +19,7 @@ public class GetRequestImpl implements GetRequest {
     @Override
     public String getRequest(String url) {
         try {
-            return get(url).body().string();
+            return Objects.requireNonNull(get(url).body()).string();
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
@@ -28,7 +29,7 @@ public class GetRequestImpl implements GetRequest {
     @Override
     public String getWithHeaderRequest(String url, Map<String, String> headers) {
         try {
-            return getWithHeader(url, headers).body().string();
+            return Objects.requireNonNull(getWithHeader(url, headers).body()).string();
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
