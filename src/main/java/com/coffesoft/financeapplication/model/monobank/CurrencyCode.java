@@ -9,7 +9,7 @@ public class CurrencyCode {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
-    private String code;
+    private Integer code;
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "currencyCode")
@@ -22,11 +22,11 @@ public class CurrencyCode {
     public CurrencyCode() {
     }
 
-    public CurrencyCode(String code) {
+    public CurrencyCode(Integer code) {
         this.code = code;
     }
 
-    public CurrencyCode(Long id, String code, AccountMono accountMono, StatementMono statementMono) {
+    public CurrencyCode(Long id, Integer code, AccountMono accountMono, StatementMono statementMono) {
         this.id = id;
         this.code = code;
         this.accountMono = accountMono;
@@ -41,11 +41,11 @@ public class CurrencyCode {
         this.id = id;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 
