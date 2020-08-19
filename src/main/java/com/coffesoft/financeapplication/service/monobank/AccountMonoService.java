@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface AccountMonoService {
     List<AccountMono> findAllAccountMono();
+    List<AccountMono> findByUserMonoIdAccountMono(String userMonoId);
     AccountMono findByIdAccountMono(String id) throws AccountMonoNotFoundException;
     AccountMono saveAccountMono(AccountMono accountMono);
     AccountMono updateAccountMono(AccountMono accountMono) throws AccountMonoNotFoundException;
