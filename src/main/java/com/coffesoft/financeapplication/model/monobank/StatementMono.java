@@ -47,6 +47,7 @@ public class StatementMono {
         operationAmount = statementMonoApi.getOperationAmount();
         commissionRate = statementMonoApi.getCommissionRate();
         cashbackAmount = statementMonoApi.getCashbackAmount();
+        hold = statementMonoApi.getHold();
         this.mcc = mcc;
         this.currencyCode = currencyCode;
         this.accountMono = accountMono;
