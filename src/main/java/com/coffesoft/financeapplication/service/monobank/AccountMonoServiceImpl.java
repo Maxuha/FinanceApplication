@@ -1,6 +1,7 @@
 package com.coffesoft.financeapplication.service.monobank;
 
 import com.coffesoft.financeapplication.exception.AccountMonoNotFoundException;
+import com.coffesoft.financeapplication.exception.NotFoundException;
 import com.coffesoft.financeapplication.model.monobank.AccountMono;
 import com.coffesoft.financeapplication.repository.monobank.AccountMonoRepository;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,11 @@ public class AccountMonoServiceImpl implements AccountMonoService {
     @Override
     public List<AccountMono> findAllAccountMono() {
         return accountMonoRepository.findAll();
+    }
+
+    @Override
+    public List<AccountMono> findByUserMonoIdAccountMono(String userMonoId) throws NotFoundException {
+        return accountMonoRepository.findByUserMonoId(userMonoId);
     }
 
     @Override
