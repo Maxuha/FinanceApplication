@@ -2,8 +2,10 @@ package com.coffesoft.financeapplication.model.system;
 
 import com.coffesoft.financeapplication.model.personal.PersonalCash;
 import com.coffesoft.financeapplication.model.personal.UserCard;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "wallet")
@@ -11,12 +13,14 @@ public class Wallet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_card_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_card_id")
     private UserCard userCard;
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "personal_cash_id", nullable = false)
     private PersonalCash personalCash;
+    @JsonIgnore
+    @XmlTransient
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "wallet")

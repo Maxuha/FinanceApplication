@@ -1,6 +1,5 @@
 package com.coffesoft.financeapplication.model.system;
 
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -10,16 +9,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column
+    @Column(unique = true)
     private String username;
     @Column
     private String password;
-    @Column
+    @Column(unique = true)
     private String email;
     @Column(name = "create_time")
     private LocalDateTime createTime;
-    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "wallet_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "wallet_id")
     private Wallet wallet;
 
     public User() {
