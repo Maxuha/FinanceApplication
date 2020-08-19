@@ -18,7 +18,13 @@ public class Mcc {
     public Mcc() {
     }
 
-    public Mcc(StatementMono statementMono) {
+    public Mcc(Integer mcc) {
+        this.mcc = mcc;
+    }
+
+    public Mcc(Long id, Integer mcc, StatementMono statementMono) {
+        this.id = id;
+        this.mcc = mcc;
         this.statementMono = statementMono;
     }
 
