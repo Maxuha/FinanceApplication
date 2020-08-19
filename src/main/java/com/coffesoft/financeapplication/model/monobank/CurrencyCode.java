@@ -22,6 +22,10 @@ public class CurrencyCode {
     public CurrencyCode() {
     }
 
+    public CurrencyCode(String code) {
+        this.code = code;
+    }
+
     public CurrencyCode(Long id, String code, AccountMono accountMono, StatementMono statementMono) {
         this.id = id;
         this.code = code;
