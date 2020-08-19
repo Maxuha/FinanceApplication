@@ -1,6 +1,9 @@
 package com.coffesoft.financeapplication.model.monobank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "currency_code")
@@ -10,10 +13,14 @@ public class CurrencyCode {
     private Long id;
     @Column
     private Integer code;
+    @JsonIgnore
+    @XmlTransient
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "currencyCode")
     private AccountMono accountMono;
+    @JsonIgnore
+    @XmlTransient
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "currencyCode")

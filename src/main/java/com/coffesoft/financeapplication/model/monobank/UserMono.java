@@ -2,8 +2,10 @@ package com.coffesoft.financeapplication.model.monobank;
 
 import com.coffesoft.financeapplication.model.monobank.api.UserMonoApi;
 import com.coffesoft.financeapplication.model.personal.UserCard;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
 
 @Entity
@@ -18,10 +20,14 @@ public class UserMono {
     private String name;
     @Column(name = "webhook_url")
     private String webHookUrl;
+    @JsonIgnore
+    @XmlTransient
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "userMono")
     private UserCard userCard;
+    @JsonIgnore
+    @XmlTransient
     @OneToMany(mappedBy = "userMono", fetch = FetchType.EAGER)
     private List<AccountMono> accountMonoList;
 
