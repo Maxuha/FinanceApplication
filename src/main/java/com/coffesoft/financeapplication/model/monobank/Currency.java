@@ -1,14 +1,16 @@
 package com.coffesoft.financeapplication.model.monobank;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "mono_currency")
-public class CurrencyMono {
+public class Currency {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
     @Column(name = "currency_code_a")
     private Integer currencyCodeA;
     @Column(name = "currency_code_b")
@@ -21,10 +23,10 @@ public class CurrencyMono {
     @Column(name = "rate_cross")
     private Float rateCross;
 
-    public CurrencyMono() {
+    public Currency() {
     }
 
-    public CurrencyMono(Long id, Integer currencyCodeA, Integer currencyCodeB, LocalDateTime date, Float rateBuy, Float rateSell, Float reteCross) {
+    public Currency(Integer id, Integer currencyCodeA, Integer currencyCodeB, LocalDateTime date, Float rateBuy, Float rateSell, Float reteCross) {
         this.id = id;
         this.currencyCodeA = currencyCodeA;
         this.currencyCodeB = currencyCodeB;
@@ -34,11 +36,11 @@ public class CurrencyMono {
         this.rateCross = rateCross;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

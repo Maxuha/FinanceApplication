@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class UserCard {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "userCard")
@@ -22,17 +22,17 @@ public class UserCard {
     public UserCard() {
     }
 
-    public UserCard(Integer id, Wallet wallet, UserMono userMono) {
+    public UserCard(Long id, Wallet wallet, UserMono userMono) {
         this.id = id;
         this.wallet = wallet;
         this.userMono = userMono;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
