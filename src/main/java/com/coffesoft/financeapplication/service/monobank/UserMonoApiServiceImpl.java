@@ -1,6 +1,7 @@
 package com.coffesoft.financeapplication.service.monobank;
 
 import com.coffesoft.financeapplication.model.monobank.UserMono;
+import com.coffesoft.financeapplication.model.monobank.api.UserMonoApi;
 import com.coffesoft.financeapplication.util.GetRequest;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,10 @@ public class UserMonoApiServiceImpl implements UserMonoApiService {
     }
 
     @Override
-    public UserMono getUserMonoByTokenFromMonoApi(String token) {
+    public UserMonoApi getUserMonoByTokenFromMonoApi(String token) {
         Map<String, String> headers = new HashMap<>();
         headers.put("X-Token", token);
         String response = getRequest.getWithHeaderRequest(url, headers);
-        return new Gson().fromJson(response, UserMono.class);
+        return new Gson().fromJson(response, UserMonoApi.class);
     }
 }
