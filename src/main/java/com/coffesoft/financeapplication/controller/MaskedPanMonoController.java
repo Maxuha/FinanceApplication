@@ -37,22 +37,12 @@ public class MaskedPanMonoController {
 
     @PostMapping(value = "/mono/masked-pan", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<MaskedPanMono> create(@RequestBody MaskedPanMono maskedPanMono) {
-        try {
-            return new ResponseEntity<>(maskedPanMonoService.saveMaskedPanMono(maskedPanMono), HttpStatus.OK);
-        } catch (MaskedPanMonoNotFoundException e) {
-            logger.warn("Post request: " + e.getMessage());
-        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(maskedPanMonoService.saveMaskedPanMono(maskedPanMono), HttpStatus.OK);
     }
 
     @PostMapping(value = "/mono/masked-pans", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<MaskedPanMono>> createForAccountMono(@RequestBody List<MaskedPanMono> accountMonoList) {
-        try {
-            return new ResponseEntity<>(maskedPanMonoService.saveMaskedPanMonoListForAccountMono(accountMonoList), HttpStatus.OK);
-        } catch (MaskedPanMonoNotFoundException e) {
-            logger.warn("Post request: " + e.getMessage());
-        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(maskedPanMonoService.saveMaskedPanMonoListForAccountMono(accountMonoList), HttpStatus.OK);
     }
 
     @PutMapping(value = "/mono/masked-pan", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
